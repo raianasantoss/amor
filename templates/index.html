@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pra Gente - Nosso Cantinho</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --lavender: #e6e6fa;
+            --night-blue: #191970;
+            --light-pink: #ffb6c1;
+            --soft-pink: #ffebee;
+            --white: #ffffff;
+            --dark-pink: #f8bbd0;
+            --text-color: #5a5a82;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--soft-pink);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(var(--lavender) 2px, transparent 2px),
+                radial-gradient(var(--light-pink) 2px, transparent 2px);
+            background-size: 50px 50px;
+            background-position: 0 0, 25px 25px;
+        }
+        
+        /* Header e navegação */
+        header {
+            background: linear-gradient(135deg, var(--night-blue), var(--lavender));
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .logo {
+            font-family: 'Brush Script MT', cursive;
+            font-size: 2.8rem;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .tagline {
+            color: var(--white);
+            font-style: italic;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .nav-btn {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: var(--white);
+            border: none;
+            border-radius: 30px;
+            padding: 0.6rem 1.5rem;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .nav-btn:hover {
+            background-color: var(--light-pink);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Seções */
+        section {
+            padding: 3rem 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--night-blue);
+            margin-bottom: 2.5rem;
+            position: relative;
+            font-family: 'Georgia', serif;
+        }
+        
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, var(--light-pink), var(--lavender));
+            border-radius: 10px;
+        }
+        
+        /* Página inicial */
+        #home {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(135deg, var(--lavender), var(--light-pink));
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .home-content {
+            max-width: 800px;
+            z-index: 2;
+        }
+        
+        .welcome {
+            font-size: 4rem;
+            color: var(--night-blue);
+            margin-bottom: 1rem;
+            font-family: 'Dancing Script', cursive;
+            text-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);
+        }
+        
+        .intro-text {
+            font-size: 1.4rem;
+            margin-bottom: 2rem;
+            color: var(--night-blue);
+            line-height: 1.8;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        .hearts {
+            position: absolute;
+            font-size: 2rem;
+            color: rgba(255, 255, 255, 0.7);
+            z-index: 1;
+            animation: float 8s infinite ease-in-out;
+        }
+        
+        .heart-1 { top: 15%; left: 10%; animation-delay: 0s; }
+        .heart-2 { top: 25%; right: 15%; animation-delay: 1s; }
+        .heart-3 { bottom: 20%; left: 20%; animation-delay: 2s; }
+        .heart-4 { bottom: 30%; right: 25%; animation-delay: 3s; }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+        
+        /* Seção de música */
+        .playlist-container {
+            background-color: var(--white);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            margin-bottom: 3rem;
+        }
+        
+        .song {
+            display: flex;
+            align-items: center;
+            padding: 1.2rem;
+            border-bottom: 1px dashed var(--lavender);
+            transition: all 0.3s ease;
+        }
+        
+        .song:last-child {
+            border-bottom: none;
+        }
+        
+        .song:hover {
+            background-color: rgba(230, 230, 250, 0.2);
+            border-radius: 10px;
+            transform: translateX(5px);
+        }
+        
+        .song-icon {
+            font-size: 1.8rem;
+            color: var(--night-blue);
+            margin-right: 1.2rem;
+        }
+        
+        .song-info {
+            flex-grow: 1;
+        }
+        
+        .song-title {
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: var(--night-blue);
+        }
+        
+        .song-artist {
+            font-size: 0.95rem;
+            color: var(--text-color);
+            opacity: 0.8;
+        }
+        
+        .song-link {
+            background: linear-gradient(to right, var(--night-blue), var(--lavender));
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .song-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(25, 25, 112, 0.3);
+        }
+        
+        /* Seção de filmes */
+        .movies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.8rem;
+            margin-bottom: 3rem;
+        }
+        
+        .movie-card {
+            background-color: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .movie-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .movie-img {
+            height: 180px;
+            background: linear-gradient(45deg, var(--lavender), var(--light-pink));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--night-blue);
+            font-size: 2.5rem;
+        }
+        
+        .movie-content {
+            padding: 1.5rem;
+        }
+        
+        .movie-title {
+            font-size: 1.2rem;
+            color: var(--night-blue);
+            margin-bottom: 0.8rem;
+        }
+        
+        .movie-category {
+            display: inline-block;
+            background-color: var(--lavender);
+            color: var(--night-blue);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+        
+        .movie-check {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+        
+        /* Seção de dates */
+        .dates-container {
+            background-color: var(--white);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            margin-bottom: 3rem;
+        }
+        
+        .date-item {
+            display: flex;
+            align-items: center;
+            padding: 1.2rem;
+            border-bottom: 1px dashed var(--lavender);
+        }
+        
+        .date-item:last-child {
+            border-bottom: none;
+        }
+        
+        .date-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--lavender), var(--light-pink));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.5rem;
+            margin-right: 1.5rem;
+            flex-shrink: 0;
+        }
+        
+        .date-text {
+            flex-grow: 1;
+            font-size: 1.1rem;
+            color: var(--night-blue);
+        }
+        
+        .date-check {
+            margin-left: 1rem;
+        }
+        
+        /* Seção de fotos */
+        .stories-container {
+            display: flex;
+            gap: 1.5rem;
+            overflow-x: auto;
+            padding: 1rem 0 2rem;
+            margin-bottom: 3rem;
+            scrollbar-width: thin;
+        }
+        
+        .story {
+            flex: 0 0 auto;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--lavender), var(--light-pink));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 2.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .story:hover {
+            transform: scale(1.1);
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .photo-card {
+            background-color: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .photo-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .photo-img {
+            height: 200px;
+            background: linear-gradient(45deg, var(--lavender), var(--light-pink));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--night-blue);
+            font-size: 3rem;
+        }
+        
+        .photo-caption {
+            padding: 1.2rem;
+            font-style: italic;
+            color: var(--text-color);
+            text-align: center;
+            border-top: 1px solid rgba(230, 230, 250, 0.5);
+        }
+        
+        /* Seção de sonhos */
+        .dreams-container {
+            background-color: var(--white);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .dreams-container::before {
+            content: "";
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(var(--light-pink) 30%, transparent 70%);
+            opacity: 0.2;
+            border-radius: 50%;
+        }
+        
+        .dream-form {
+            display: flex;
+            margin-bottom: 2rem;
+        }
+        
+        .dream-input {
+            flex-grow: 1;
+            padding: 1rem;
+            border: 2px solid var(--lavender);
+            border-radius: 10px 0 0 10px;
+            font-size: 1rem;
+            outline: none;
+        }
+        
+        .dream-input:focus {
+            border-color: var(--night-blue);
+        }
+        
+        .dream-btn {
+            background: linear-gradient(to right, var(--night-blue), var(--lavender));
+            color: white;
+            border: none;
+            padding: 0 1.5rem;
+            border-radius: 0 10px 10px 0;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .dream-btn:hover {
+            background: linear-gradient(to right, var(--lavender), var(--night-blue));
+        }
+        
+        .dreams-list {
+            list-style: none;
+        }
+        
+        .dream-item {
+            padding: 1.2rem;
+            margin-bottom: 1rem;
+            background-color: rgba(230, 230, 250, 0.3);
+            border-radius: 10px;
+            border-left: 4px solid var(--night-blue);
+            position: relative;
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        .dream-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Seção Ler Quando */
+        .reading-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.8rem;
+        }
+        
+        .reading-card {
+            background-color: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .reading-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card-header {
+            background: linear-gradient(135deg, var(--night-blue), var(--lavender));
+            padding: 1.5rem;
+            text-align: center;
+            color: var(--white);
+        }
+        
+        .card-title {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .card-subtitle {
+            font-style: italic;
+            opacity: 0.9;
+        }
+        
+        .card-content {
+            padding: 1.5rem;
+            color: var(--text-color);
+        }
+        
+        .card-content p {
+            margin-bottom: 1rem;
+        }
+        
+        .card-content p:last-child {
+            margin-bottom: 0;
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--night-blue), var(--lavender));
+            color: var(--white);
+            text-align: center;
+            padding: 2.5rem 1.5rem;
+            margin-top: 3rem;
+        }
+        
+        .footer-heart {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--light-pink);
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+        
+        .footer-text {
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+        
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .welcome {
+                font-size: 3rem;
+            }
+            
+            .intro-text {
+                font-size: 1.2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .nav-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+            
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .welcome {
+                font-size: 2.5rem;
+            }
+            
+            .home-content {
+                padding: 1rem;
+            }
+            
+            .dream-form {
+                flex-direction: column;
+            }
+            
+            .dream-input {
+                border-radius: 10px;
+                margin-bottom: 0.5rem;
+            }
+            
+            .dream-btn {
+                border-radius: 10px;
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <header>
+        <div class="logo">Pra Gente</div>
+        <div class="tagline">Nosso cantinho especial</div>
+        <nav>
+            <button class="nav-btn" onclick="scrollToSection('home')"><i class="fas fa-home"></i> Início</button>
+            <button class="nav-btn" onclick="scrollToSection('music')"><i class="fas fa-music"></i> Músicas</button>
+            <button class="nav-btn" onclick="scrollToSection('movies')"><i class="fas fa-film"></i> Filmes</button>
+            <button class="nav-btn" onclick="scrollToSection('dates')"><i class="fas fa-heart"></i> Dates</button>
+            <button class="nav-btn" onclick="scrollToSection('photos')"><i class="fas fa-camera"></i> Fotos</button>
+            <button class="nav-btn" onclick="scrollToSection('dreams')"><i class="fas fa-star"></i> Sonhos</button>
+            <button class="nav-btn" onclick="scrollToSection('read')"><i class="fas fa-book-open"></i> Ler Quando</button>
+        </nav>
+    </header>
+
+    <!-- Página Inicial -->
+    <section id="home">
+        <div class="home-content">
+            <h1 class="welcome">Bem-vinda ao nosso cantinho</h1>
+            <p class="intro-text">Um espaço feito com todo o carinho para guardar nossas memórias, sonhos e momentos especiais. Aqui é onde nosso amor tem um lugar só nosso, cheio de segredos, risadas e promessas.</p>
+        </div>
+        <div class="hearts heart-1">❤️</div>
+        <div class="hearts heart-2">💖</div>
+        <div class="hearts heart-3">💗</div>
+        <div class="hearts heart-4">💝</div>
+    </section>
+
+    <!-- Seção de Músicas -->
+    <section id="music">
+        <h2 class="section-title">Me Lembram Você</h2>
+        <div class="playlist-container">
+            <div class="song">
+                <div class="song-icon">🎵</div>
+                <div class="song-info">
+                    <div class="song-title">Perfect</div>
+                    <div class="song-artist">Ed Sheeran</div>
+                </div>
+                <a href="https://spotify.link/6MNdYyr0Syb" class="song-link">Letra <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="song">
+                <div class="song-icon">🎵</div>
+                <div class="song-info">
+                    <div class="song-title">Can't Help Falling in Love</div>
+                    <div class="song-artist">Elvis Presley</div>
+                </div>
+                <a href="#" class="song-link">Letra <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="song">
+                <div class="song-icon">🎵</div>
+                <div class="song-info">
+                    <div class="song-title">A Thousand Years</div>
+                    <div class="song-artist">Christina Perri</div>
+                </div>
+                <a href="#" class="song-link">Letra <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="song">
+                <div class="song-icon">🎵</div>
+                <div class="song-info">
+                    <div class="song-title">Just the Way You Are</div>
+                    <div class="song-artist">Bruno Mars</div>
+                </div>
+                <a href="#" class="song-link">Letra <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="song">
+                <div class="song-icon">🎵</div>
+                <div class="song-info">
+                    <div class="song-title">All of Me</div>
+                    <div class="song-artist">John Legend</div>
+                </div>
+                <a href="#" class="song-link">Letra <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Filmes -->
+    <section id="movies">
+        <h2 class="section-title">Filmes pra Gente Assistir Juntas</h2>
+        <div class="movies-grid">
+            <div class="movie-card">
+                <div class="movie-img">🎬</div>
+                <div class="movie-content">
+                    <h3 class="movie-title">Amor e Monstros</h3>
+                    <span class="movie-category">Romance/Aventura</span>
+                    <p>Um filme leve e divertido sobre amor em meio ao caos.</p>
+                    <div class="movie-check">
+                        <input type="checkbox" id="movie1" data-id="1">
+                        <label for="movie1">Assistimos juntas?</label>
+                    </div>
+                </div>
+            </div>
+            <div class="movie-card">
+                <div class="movie-img">🎬</div>
+                <div class="movie-content">
+                    <h3 class="movie-title">Carol</h3>
+                    <span class="movie-category">Romance/Drama</span>
+                    <p>Um amor proibido nos anos 50 que resiste às convenções.</p>
+                    <div class="movie-check">
+                        <input type="checkbox" id="movie2" data-id="2">
+                        <label for="movie2">Assistimos juntas?</label>
+                    </div>
+                </div>
+            </div>
+            <div class="movie-card">
+                <div class="movie-img">🎬</div>
+                <div class="movie-content">
+                    <h3 class="movie-title">Amor com Data Marcada</h3>
+                    <span class="movie-category">Romance/Comédia</span>
+                    <p>Dois desconhecidos que fingem ser um casal para agradar a família.</p>
+                    <div class="movie-check">
+                        <input type="checkbox" id="movie3" data-id="3">
+                        <label for="movie3">Assistimos juntas?</label>
+                    </div>
+                </div>
+            </div>
+            <div class="movie-card">
+                <div class="movie-img">🎬</div>
+                <div class="movie-content">
+                    <h3 class="movie-title">A Culpa é das Estrelas</h3>
+                    <span class="movie-category">Romance/Drama</span>
+                    <p>Uma história de amor intensa entre dois jovens com câncer.</p>
+                    <div class="movie-check">
+                        <input type="checkbox" id="movie4" data-id="4">
+                        <label for="movie4">Assistimos juntas?</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Dates -->
+    <section id="dates">
+        <h2 class="section-title">Checklist de Dates</h2>
+        <div class="dates-container">
+            <div class="date-item">
+                <div class="date-icon">🌮</div>
+                <div class="date-text">Comer tacos juntas</div>
+                <input type="checkbox" class="date-check" data-id="1">
+            </div>
+            <div class="date-item">
+                <div class="date-icon">🌌</div>
+                <div class="date-text">Ver as estrelas deitadas num lençol</div>
+                <input type="checkbox" class="date-check" data-id="2">
+            </div>
+            <div class="date-item">
+                <div class="date-icon">🎨</div>
+                <div class="date-text">Pintar uma a outra</div>
+                <input type="checkbox" class="date-check" data-id="3">
+            </div>
+            <div class="date-item">
+                <div class="date-icon">🌧️</div>
+                <div class="date-text">Tomar banho de chuva</div>
+                <input type="checkbox" class="date-check" data-id="4">
+            </div>
+            <div class="date-item">
+                <div class="date-icon">✈️</div>
+                <div class="date-text">Viajar sem rumo</div>
+                <input type="checkbox" class="date-check" data-id="5">
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Fotos -->
+    <section id="photos">
+        <h2 class="section-title">Fotinhas Nossas</h2>
+        <div class="stories-container">
+            <div class="story">📸</div>
+            <div class="story">🌄</div>
+            <div class="story">🍦</div>
+            <div class="story">🏖️</div>
+            <div class="story">🎉</div>
+            <div class="story">😊</div>
+            <div class="story">💏</div>
+        </div>
+        <div class="gallery">
+            <div class="photo-card">
+                <div class="photo-img">🖼️</div>
+                <div class="photo-caption">Nosso primeiro encontro secreto - um sorriso que só eu conheço o motivo.</div>
+            </div>
+            <div class="photo-card">
+                <div class="photo-img">🖼️</div>
+                <div class="photo-caption">Aquele dia na praia, quando o mundo era só nós duas e o mar.</div>
+            </div>
+            <div class="photo-card">
+                <div class="photo-img">🖼️</div>
+                <div class="photo-caption">Nosso piquenique no parque, com aquela comida horrível que fizemos juntas.</div>
+            </div>
+            <div class="photo-card">
+                <div class="photo-img">🖼️</div>
+                <div class="photo-caption">Quando fingimos ser só amigas na festa da empresa, mas sabíamos a verdade.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Sonhos -->
+    <section id="dreams">
+        <h2 class="section-title">Nossos Sonhos</h2>
+        <div class="dreams-container">
+            <form class="dream-form">
+                <input type="text" class="dream-input" placeholder="Adicione um sonho nosso...">
+                <button type="submit" class="dream-btn">+</button>
+            </form>
+            <ul class="dreams-list">
+                <li class="dream-item">Viajar para a Europa juntas e conhecer Paris</li>
+                <li class="dream-item">Morar numa casa com jardim e dois cachorrinhos</li>
+                <li class="dream-item">Ver o nascer do sol na praia abraçadas</li>
+                <li class="dream-item">Fazer uma festa de casamento quando pudermos nos assumir</li>
+                <li class="dream-item">Criar nosso próprio negócio juntas</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Seção Ler Quando -->
+    <section id="read">
+        <h2 class="section-title">Ler Quando...</h2>
+        <div class="reading-cards">
+            <div class="reading-card">
+                <div class="card-header">
+                    <h3 class="card-title">Quando estiver triste</h3>
+                    <div class="card-subtitle">Eu estou aqui por você</div>
+                </div>
+                <div class="card-content">
+                    <p>Amor, sei que as coisas estão difíceis agora, mas quero que saiba que você é incrível, forte e capaz de superar qualquer obstáculo.</p>
+                    <p>Estarei sempre aqui para te apoiar, te abraçar e lembrar o quanto você é especial. Nenhuma tristeza dura para sempre, e juntas somos mais fortes.</p>
+                </div>
+            </div>
+            <div class="reading-card">
+                <div class="card-header">
+                    <h3 class="card-title">Quando estiver chateada</h3>
+                    <div class="card-subtitle">Vamos resolver juntas</div>
+                </div>
+                <div class="card-content">
+                    <p>Sei que algo te magoou e quero que saiba que seu bem-estar é o mais importante para mim.</p>
+                    <p>Vamos conversar, desabafar e encontrar uma solução juntas. Prometo ouvir com todo o carinho e respeito que você merece.</p>
+                </div>
+            </div>
+            <div class="reading-card">
+                <div class="card-header">
+                    <h3 class="card-title">Quando brigarmos</h3>
+                    <div class="card-subtitle">Nada vale nossa união</div>
+                </div>
+                <div class="card-content">
+                    <p>Por mais que estejamos brigadas, quero que saiba que te amo acima de tudo. Nenhuma discussão é maior que o que sentimos uma pela outra.</p>
+                    <p>Vamos respirar fundo, conversar com calma e lembrar que nosso amor é mais forte que qualquer desentendimento.</p>
+                </div>
+            </div>
+            <div class="reading-card">
+                <div class="card-header">
+                    <h3 class="card-title">Quando quiser rir</h3>
+                    <div class="card-subtitle">Lembranças engraçadas</div>
+                </div>
+                <div class="card-content">
+                    <p>Lembra quando tentamos cozinhar aquele prato italiano e quase botamos fogo na cozinha?</p>
+                    <p>Ou quando fomos ao cinema e você espirrou refrigerante no meu vestido novo? Esses momentos bobos são os que mais amo porque são genuinamente nossos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer>
+        <div class="footer-heart">💖</div>
+        <div class="footer-text">
+            Este espaço foi criado com todo o amor para guardar nossas memórias, sonhos e segredos. Que ele seja um refúgio onde nosso amor possa florescer livremente, mesmo quando o mundo lá fora não nos entender.
+        </div>
+    </footer>
+
+    <script>
+        // Função para rolar até as seções
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+        }
+        
+        // Carregar dados do servidor
+        function loadData() {
+            fetch('/get_data')
+                .then(response => response.json())
+                .then(data => {
+                    // Atualizar lista de sonhos
+                    const dreamsList = document.querySelector('.dreams-list');
+                    dreamsList.innerHTML = '';
+                    data.dreams.forEach(dream => {
+                        const dreamItem = document.createElement('li');
+                        dreamItem.className = 'dream-item';
+                        dreamItem.textContent = dream;
+                        dreamsList.appendChild(dreamItem);
+                    });
+                    
+                    // Marcar filmes assistidos
+                    data.watched_movies.forEach(movieId => {
+                        const checkbox = document.getElementById(movieId);
+                        if (checkbox) checkbox.checked = true;
+                    });
+                    
+                    // Marcar dates completos
+                    data.completed_dates.forEach(dateId => {
+                        const checkbox = document.querySelector(`.date-check[data-id="${dateId}"]`);
+                        if (checkbox) checkbox.checked = true;
+                    });
+                });
+        }
+        
+        // Adicionar novos sonhos
+        const dreamForm = document.querySelector('.dream-form');
+        const dreamsList = document.querySelector('.dreams-list');
+        
+        dreamForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const dreamInput = document.querySelector('.dream-input');
+            const dreamText = dreamInput.value.trim();
+            
+            if (dreamText) {
+                fetch('/add_dream', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ dream: dreamText })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        loadData(); // Recarregar dados do servidor
+                        dreamInput.value = ''; // Limpar o campo
+                    }
+                });
+            }
+        });
+        
+        // Toggle filmes assistidos
+        document.querySelectorAll('.movie-check input').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const movieId = this.id;
+                const action = this.checked ? 'add' : 'remove';
+                
+                fetch('/toggle_movie', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ movie_id: movieId, action: action })
+                });
+            });
+        });
+        
+        // Toggle dates completos
+        document.querySelectorAll('.date-check').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const dateId = this.getAttribute('data-id');
+                const action = this.checked ? 'add' : 'remove';
+                
+                fetch('/toggle_date', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ date_id: dateId, action: action })
+                });
+            });
+        });
+        
+        // Efeito de hover nas seções
+        const sections = document.querySelectorAll('section');
+        sections.forEach(section => {
+            section.addEventListener('mouseenter', () => {
+                section.style.transform = 'translateY(-5px)';
+                section.style.transition = 'transform 0.3s ease';
+            });
+            
+            section.addEventListener('mouseleave', () => {
+                section.style.transform = 'translateY(0)';
+            });
+        });
+        
+        // Carregar dados quando a página carrega
+        document.addEventListener('DOMContentLoaded', loadData);
+    </script>
+</body>
+</html>
